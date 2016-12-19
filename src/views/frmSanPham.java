@@ -13,6 +13,7 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Loai;
 import models.SanPham;
@@ -135,8 +136,18 @@ public class frmSanPham extends javax.swing.JFrame {
         jLabel3.setText("Giá");
 
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xoá");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setText("Sửa");
 
@@ -264,6 +275,37 @@ public class frmSanPham extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_tblSanPhamMouseClicked
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        xoatext();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+       
+        String masp = txtmasp.getText();
+        if (masp.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn khoa cần xóa", "Thông báo", 1);
+        } else {
+            int b = JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa dữ liệu này?", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (b == JOptionPane.YES_OPTION) {
+                try {
+                    new SanPhamDAO().deleteSP(masp);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(this, "Dữ liệu chưa thể xóa, có tồn tại lớp của khoa này.\nHãy xóa dữ liệu lớp của khoa này trước.", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+                while (dtm.getRowCount() > 0) {
+                    dtm.removeRow(0);
+                }
+                try {
+                    loaddata();
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmLoaiSP.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            xoatext();
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     /**
      * @param args the command line arguments

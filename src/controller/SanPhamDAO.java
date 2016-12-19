@@ -52,7 +52,7 @@ public class SanPhamDAO {
     public void deleteSP(String ID) throws SQLException, ClassNotFoundException
     {
         Connection connection = Connect.getConnection();
-        String sql = "Delete from Sanpham where MalSP=?";
+        String sql = "Delete from Sanpham where MaSP=?";
         PreparedStatement ps = connection.prepareCall(sql);
         ps.setString(1, ID);
         ps.executeUpdate();
