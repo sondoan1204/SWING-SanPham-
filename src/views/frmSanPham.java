@@ -26,6 +26,7 @@ public class frmSanPham extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
     private DefaultComboBoxModel dcbm;
+    private boolean cotthem = false;
     ArrayList<SanPham> listSP = null;
     ArrayList<Loai> listLoai = null;
 
@@ -42,7 +43,7 @@ public class frmSanPham extends javax.swing.JFrame {
         for (Loai loai : listLoai) {
             //dcbm.addElement(loai.getMaloai());
             dcbm.addElement(loai.getTenloai());
-            
+
         }
         cbbLoai.setModel(dcbm);
         loaddata();
@@ -52,6 +53,7 @@ public class frmSanPham extends javax.swing.JFrame {
         txtgia.setText("");
         txtmasp.setText("");
         txttensp.setText("");
+
     }
 
     private static Object[] toObjectsData(SanPham sp) {
@@ -94,7 +96,7 @@ public class frmSanPham extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
         cbbLoai = new javax.swing.JComboBox<>();
-        txtmasp = new javax.swing.JTextField();
+        txtmasp12 = new javax.swing.JTextField();
         txttensp = new javax.swing.JTextField();
         txtgia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -105,7 +107,7 @@ public class frmSanPham extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtmasp = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +152,11 @@ public class frmSanPham extends javax.swing.JFrame {
         });
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setText("Lưu");
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
@@ -159,9 +166,14 @@ public class frmSanPham extends javax.swing.JFrame {
         });
 
         btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThoatActionPerformed(evt);
+            }
+        });
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAAA")));
+            txtmasp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("AAAA")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -184,15 +196,15 @@ public class frmSanPham extends javax.swing.JFrame {
                                 .addComponent(txtgia, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtmasp12, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(84, 84, 84))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txttensp, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -213,14 +225,14 @@ public class frmSanPham extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtmasp12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txttensp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtgia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,15 +258,28 @@ public class frmSanPham extends javax.swing.JFrame {
         String gia = txtgia.getText();
         String maloai = listLoai.get(cbbLoai.getSelectedIndex()).getMaloai();
         SanPham sp = new SanPham(masp, tensp, Long.valueOf(gia), maloai);
-        try {
-            SanPham insert = new SanPhamDAO().addNew(sp);
-            if (insert != null) {
-                showAll();
-                xoatext();
+        if (cotthem == true) {
+            try {
+                SanPham insert = new SanPhamDAO().addNew(sp);
+                if (insert != null) {
+                    showAll();
+                    xoatext();
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                SanPham update = new SanPhamDAO().update(sp);
+                if (update != null) {
+                    showAll();
+                    xoatext();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(frmLoaiSP.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnLuuActionPerformed
@@ -263,26 +288,27 @@ public class frmSanPham extends javax.swing.JFrame {
         txtmasp.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString());
         txttensp.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 1).toString());
         txtgia.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 2).toString());
-         //cbbLoai.setSelectedItem(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
-            //cbbLoai.setSelectedIndex((int) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3));
-            //cbbLoai.setSelectedItem("Sơn Đoàn");
+        //cbbLoai.setSelectedItem(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
+        //cbbLoai.setSelectedIndex((int) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3));
+        //cbbLoai.setSelectedItem("Sơn Đoàn");
         try {
-            String tenLoai=new LoaiSP().tenLoai(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
+            String tenLoai = new LoaiSP().tenLoai(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
             cbbLoai.setSelectedItem(tenLoai);
         } catch (SQLException ex) {
             Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println(ex);
         }
-        
+
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         xoatext();
+        cotthem = true;
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-       
+
         String masp = txtmasp.getText();
         if (masp.length() == 0) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn khoa cần xóa", "Thông báo", 1);
@@ -306,6 +332,15 @@ public class frmSanPham extends javax.swing.JFrame {
             xoatext();
         }
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+       cotthem=false;
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -353,14 +388,14 @@ public class frmSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbbLoai;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtgia;
-    private javax.swing.JTextField txtmasp;
+    private javax.swing.JFormattedTextField txtmasp;
+    private javax.swing.JTextField txtmasp12;
     private javax.swing.JTextField txttensp;
     // End of variables declaration//GEN-END:variables
 }
