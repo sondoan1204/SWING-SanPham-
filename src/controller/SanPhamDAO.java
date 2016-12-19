@@ -37,4 +37,25 @@ public class SanPhamDAO {
         connection.close();
         return list;
     }
+    public SanPham addNew(SanPham sp) throws SQLException {
+        Connection connection = Connect.getConnection();
+        String sql = "INSERT INTO Sanpham VALUES(?,?,?,?)";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, sp.getMasp());
+        ps.setString(2, sp.getTensp());
+        ps.setLong(3, sp.getGia());
+        ps.setString(4, sp.getMaloai());
+        ps.executeUpdate();
+        connection.close();
+        return sp;
+    }
+    public void deleteSP(String ID) throws SQLException, ClassNotFoundException
+    {
+        Connection connection = Connect.getConnection();
+        String sql = "Delete from Sanpham where MalSP=?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, ID);
+        ps.executeUpdate();
+        connection.close();
+    }
 }

@@ -31,11 +31,30 @@ public class LoaiSP {
             Loai l = new Loai();
             l.setMaloai(rs.getString("Maloai"));
             l.setTenloai(rs.getString("Tenloai"));
-
             list.add(l);
         }
         connection.close();
         return list;
+    }
+
+    public String tenLoai(String ID) throws SQLException {
+        Connection connection = Connect.getConnection();
+        String sql = "SELECT\n"
+                + "dbo.LoaiSP.Tenloai as tenloai\n"
+                + "FROM\n"
+                + "dbo.LoaiSP\n"
+                + "WHERE\n"
+                + "dbo.LoaiSP.Maloai = ?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, ID);
+        ResultSet rs = ps.executeQuery();
+        //ps.executeUpdate();
+        String ten = null;
+        while (rs.next()) {
+        ten=rs.getString("tenloai");
+        }
+        connection.close();
+        return ten;
     }
 
     public Loai addNew(Loai loai) throws SQLException {
@@ -48,6 +67,7 @@ public class LoaiSP {
         connection.close();
         return loai;
     }
+
     //Update Khoa set TenKhoa=?, SDT =? where MaKhoa=?"
     public Loai update(Loai loai) throws SQLException {
         Connection connection = Connect.getConnection();
@@ -59,8 +79,8 @@ public class LoaiSP {
         connection.close();
         return loai;
     }
-    public void deleteLoai(String ID) throws SQLException, ClassNotFoundException
-    {
+
+    public void deleteLoai(String ID) throws SQLException, ClassNotFoundException {
         Connection connection = Connect.getConnection();
         String sql = "Delete from LoaiSP where Maloai=?";
         PreparedStatement ps = connection.prepareCall(sql);
