@@ -52,6 +52,7 @@ public class frmSanPham extends javax.swing.JFrame {
     private void xoatext() {
         txtgia.setText("");
         txtmasp.setText("");
+        //txtmasp.setPrompt("dsad");
         txttensp.setText("");
 
     }
@@ -258,6 +259,15 @@ public class frmSanPham extends javax.swing.JFrame {
         String gia = txtgia.getText();
         String maloai = listLoai.get(cbbLoai.getSelectedIndex()).getMaloai();
         SanPham sp = new SanPham(masp, tensp, Long.valueOf(gia), maloai);
+        try {
+            long kt=new SanPhamDAO().chekid(masp);
+            if(kt!=0){
+            JOptionPane.showMessageDialog(this, "Mã bị trùng!", "Vui lòng kiểm tra lại", JOptionPane.ERROR_MESSAGE);
+            return;
+                        }
+        } catch (SQLException ex) {
+            Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (cotthem == true) {
             try {
                 SanPham insert = new SanPhamDAO().addNew(sp);

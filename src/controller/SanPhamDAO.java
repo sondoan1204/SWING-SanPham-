@@ -37,6 +37,7 @@ public class SanPhamDAO {
         connection.close();
         return list;
     }
+
     public SanPham addNew(SanPham sp) throws SQLException {
         Connection connection = Connect.getConnection();
         String sql = "INSERT INTO Sanpham VALUES(?,?,?,?)";
@@ -49,6 +50,7 @@ public class SanPhamDAO {
         connection.close();
         return sp;
     }
+
     //Update sanpham
     public SanPham update(SanPham sp) throws SQLException {
         Connection connection = Connect.getConnection();
@@ -62,13 +64,27 @@ public class SanPhamDAO {
         connection.close();
         return sp;
     }
-    public void deleteSP(String ID) throws SQLException, ClassNotFoundException
-    {
+
+    public void deleteSP(String ID) throws SQLException, ClassNotFoundException {
         Connection connection = Connect.getConnection();
         String sql = "Delete from Sanpham where MaSP=?";
         PreparedStatement ps = connection.prepareCall(sql);
         ps.setString(1, ID);
         ps.executeUpdate();
         connection.close();
+    }
+
+    public long chekid(String ID) throws SQLException {
+        Connection connection = Connect.getConnection();
+        String sql = "Select count(*) as sl from Sanpham where MaSP=?";
+        PreparedStatement ps = connection.prepareCall(sql);
+        ps.setString(1, ID);
+        ResultSet rs = ps.executeQuery();
+        long count = 0;
+        while (rs.next()) {
+            count = rs.getLong("sl");
+        }
+        connection.close();
+        return count;
     }
 }
