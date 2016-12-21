@@ -38,6 +38,27 @@ public class SanPhamDAO {
         return list;
     }
 
+    //Theo trang 5sp 1 trang
+    public ArrayList<SanPham> getTrang(long trang) throws SQLException {
+        Connection connection = Connect.getConnection();
+        String sql = "SELECT top 5 * FROM Sanpham \n"
+                + "WHERE TenSP not in (SELECT top " + trang + " TenSP from Sanpham)";
+        PreparedStatement ps = connection.prepareCall(sql);
+        //ps.setLong(1, trang);
+        ResultSet rs = ps.executeQuery();
+        ArrayList<SanPham> list = new ArrayList<>();
+        while (rs.next()) {
+            SanPham sp = new SanPham();
+            sp.setMasp(rs.getString("MaSP"));
+            sp.setTensp(rs.getString("TenSP"));
+            sp.setGia(rs.getLong("Dongia"));
+            sp.setMaloai(rs.getString("Maloai"));
+            list.add(sp);
+        }
+        connection.close();
+        return list;
+    }
+
     public SanPham addNew(SanPham sp) throws SQLException {
         Connection connection = Connect.getConnection();
         String sql = "INSERT INTO Sanpham VALUES(?,?,?,?)";

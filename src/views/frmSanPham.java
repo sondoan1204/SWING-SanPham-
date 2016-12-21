@@ -29,6 +29,7 @@ public class frmSanPham extends javax.swing.JFrame {
     private boolean cotthem = false;
     ArrayList<SanPham> listSP = null;
     ArrayList<Loai> listLoai = null;
+    long trang=1;
 
     public frmSanPham() throws SQLException {
         initComponents();
@@ -43,10 +44,11 @@ public class frmSanPham extends javax.swing.JFrame {
         for (Loai loai : listLoai) {
             //dcbm.addElement(loai.getMaloai());
             dcbm.addElement(loai.getTenloai());
-
         }
         cbbLoai.setModel(dcbm);
-        loaddata();
+        //loaddata();
+        loaddataTrang(trang*5-5);
+        txtTrang.setText("Trang "+trang);
     }
 
     private void xoatext() {
@@ -64,6 +66,13 @@ public class frmSanPham extends javax.swing.JFrame {
 
     private void loaddata() throws SQLException {
         listSP = new SanPhamDAO().getAll();
+        for (SanPham sp : listSP) {
+            dtm.addRow(toObjectsData(sp));
+        }
+        tblSanPham.setModel(dtm);
+    }
+    private void loaddataTrang(long sotrang) throws SQLException {
+        listSP = new SanPhamDAO().getTrang(sotrang);
         for (SanPham sp : listSP) {
             dtm.addRow(toObjectsData(sp));
         }
@@ -109,6 +118,9 @@ public class frmSanPham extends javax.swing.JFrame {
         btnLuu = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         txtmasp = new javax.swing.JFormattedTextField();
+        btnTrai = new javax.swing.JButton();
+        btnPhai = new javax.swing.JButton();
+        txtTrang = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,6 +191,20 @@ public class frmSanPham extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        btnTrai.setText("<<");
+        btnTrai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraiActionPerformed(evt);
+            }
+        });
+
+        btnPhai.setText(">>");
+        btnPhai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhaiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,26 +223,36 @@ public class frmSanPham extends javax.swing.JFrame {
                                 .addComponent(txtgia, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtmasp12, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txttensp, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnPhai, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtmasp12, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtmasp, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbbLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txttensp, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(84, 84, 84))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnThem)
                         .addGap(18, 18, 18)
-                        .addComponent(btnXoa)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSua)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLuu)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnXoa)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSua)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLuu))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTrai, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnThoat)
                         .addGap(174, 174, 174))))
@@ -245,7 +281,12 @@ public class frmSanPham extends javax.swing.JFrame {
                     .addComponent(btnSua)
                     .addComponent(btnLuu)
                     .addComponent(btnThoat))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTrai)
+                    .addComponent(btnPhai)
+                    .addComponent(txtTrang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -352,6 +393,32 @@ public class frmSanPham extends javax.swing.JFrame {
        cotthem=false;
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void btnPhaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhaiActionPerformed
+        trang++;
+        try {
+            while (dtm.getRowCount() > 0) {
+                    dtm.removeRow(0);
+                }
+            loaddataTrang(trang*5-5);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtTrang.setText("Trang "+trang);
+    }//GEN-LAST:event_btnPhaiActionPerformed
+
+    private void btnTraiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraiActionPerformed
+         trang--;
+        try {
+            while (dtm.getRowCount() > 0) {
+                    dtm.removeRow(0);
+                }
+            loaddataTrang(trang*5-5);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtTrang.setText("Trang "+trang);
+    }//GEN-LAST:event_btnTraiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -386,6 +453,7 @@ public class frmSanPham extends javax.swing.JFrame {
                     new frmSanPham().setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(frmSanPham.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println(ex);
                 }
             }
         });
@@ -393,9 +461,11 @@ public class frmSanPham extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuu;
+    private javax.swing.JButton btnPhai;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThoat;
+    private javax.swing.JButton btnTrai;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbbLoai;
     private javax.swing.JLabel jLabel1;
@@ -403,6 +473,7 @@ public class frmSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSanPham;
+    private javax.swing.JLabel txtTrang;
     private javax.swing.JTextField txtgia;
     private javax.swing.JFormattedTextField txtmasp;
     private javax.swing.JTextField txtmasp12;
