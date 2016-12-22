@@ -129,11 +129,7 @@ public class SanPhamDAO {
         connection.close();
         return list;
     }
-//    //Truy van du lieu trong table sanpham theo gia
-//    public ResultSet ShowSPTheogia(int giatu,int giaden) throws SQLException{
-//        String sql="SELECT MaSP,TenSP,Dongia,l.Maloai,Tenloai FROM Sanpham s,LoaiSP l where l.Maloai=s.Maloai and Dongia between"+giatu+"and"+giaden;
-//        return cn.LoadData(sql);
-//    }
+
     //tìm kiếm theo giá
      public ArrayList<SanPham> getGia(long tu, long den) throws SQLException {
         Connection connection = Connect.getConnection();

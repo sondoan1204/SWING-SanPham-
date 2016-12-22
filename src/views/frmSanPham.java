@@ -359,9 +359,6 @@ public class frmSanPham extends javax.swing.JFrame {
         txtmasp.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 0).toString());
         txttensp.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 1).toString());
         txtgia.setText(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 2).toString());
-        //cbbLoai.setSelectedItem(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
-        //cbbLoai.setSelectedIndex((int) tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3));
-        //cbbLoai.setSelectedItem("Sơn Đoàn");
         try {
             String tenLoai = new LoaiSP().tenLoai(tblSanPham.getValueAt(tblSanPham.getSelectedRow(), 3).toString());
             cbbLoai.setSelectedItem(tenLoai);
@@ -373,7 +370,6 @@ public class frmSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
         xoatext();
         entext();
         cotthem = true;
@@ -408,7 +404,6 @@ public class frmSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
 
