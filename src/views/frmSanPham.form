@@ -117,10 +117,10 @@
                   <Component id="btnKluu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnTrai" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPhai" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTrang" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnPhai" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="234" max="-2" attributes="0"/>
