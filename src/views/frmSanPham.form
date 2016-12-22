@@ -38,22 +38,30 @@
                               <Component id="txtgia" min="-2" pref="157" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txttensp" min="-2" pref="157" max="-2" attributes="0"/>
-                              <EmptySpace min="74" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btnPhai" min="-2" pref="78" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="txtmasp12" min="-2" pref="157" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtmasp" min="-2" pref="108" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txttensp" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="btnPhai" min="-2" pref="78" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="txtTrang" min="-2" pref="56" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="btnTrai" min="-2" pref="78" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="txtmasp" min="-2" pref="157" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="cbbLoai" min="-2" pref="201" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="cbbLoai" min="-2" pref="201" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                              <EmptySpace min="84" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -64,24 +72,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnThem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="btnXoa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnSua" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnLuu" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnTrai" min="-2" pref="78" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtTrang" min="-2" pref="56" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="btnXoa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnSua" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnLuu" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnKluu" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnThoat" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -92,10 +92,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtmasp12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtmasp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbbLoai" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtmasp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -114,12 +114,13 @@
                   <Component id="btnSua" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLuu" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnThoat" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnKluu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnTrai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTrai" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="btnPhai" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTrang" max="32767" attributes="0"/>
+                  <Component id="txtTrang" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="234" max="-2" attributes="0"/>
@@ -168,7 +169,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtmasp12">
+    <Component class="javax.swing.JTextField" name="txtmasp">
     </Component>
     <Component class="javax.swing.JTextField" name="txttensp">
     </Component>
@@ -229,13 +230,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThoatActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtmasp">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-          <Format format="AAAA" subtype="-1" type="5"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnTrai">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;&lt;"/>
@@ -253,6 +247,19 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="txtTrang">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnKluu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="K.L&#x1b0;u"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKluuActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i SP:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
