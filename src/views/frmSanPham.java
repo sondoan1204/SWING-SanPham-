@@ -73,7 +73,8 @@ public class frmSanPham extends javax.swing.JFrame {
         txtgia.setEnabled(true);
         cbbLoai.setEnabled(true);
     }
-    private void setnut(boolean a){
+
+    private void setnut(boolean a) {
         btnThem.setEnabled(a);
         btnXoa.setEnabled(a);
         btnSua.setEnabled(a);
@@ -335,10 +336,14 @@ public class frmSanPham extends javax.swing.JFrame {
                 }
                 SanPham insert = new SanPhamDAO().addNew(sp);
                 if (insert != null) {
-                    showAll();
+                    //showAll();
+                    while (dtm.getRowCount() > 0) {
+                        dtm.removeRow(0);
+                    }
+                    loaddata();
                     xoatext();
                     distext();
-                   
+
                 }
 
             } catch (SQLException ex) {
@@ -351,7 +356,7 @@ public class frmSanPham extends javax.swing.JFrame {
                     showAll();
                     xoatext();
                     distext();
-                  
+
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(frmLoaiSP.class.getName()).log(Level.SEVERE, null, ex);
